@@ -24,7 +24,16 @@
                                 <td class="text-center">{{$post->title}}</td>
                                 <td class="text-center">{{$post->content}}</td>
                                 <td class="text-center">{{$post->genre}}</td>
-                                
+                                <td>
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                        <a class="btn btn-sm btn-warning" href="{{ route('posts.show', $post->id)}}">Show</a>
+                                        <a class="btn btn-sm btn-primary" href="{{ route('posts.edit', $post->id)}}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+
+                                </td>
                             @endforeach
                         </tbody>
                     </table>
